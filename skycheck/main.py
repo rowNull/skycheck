@@ -1,4 +1,4 @@
-from weather import get_weather
+from skycheck.weather import get_weather
 
 if __name__ == "__main__":
     userCity = input("\nEnter city name (or type 'exit' to quit): ").strip()
@@ -7,6 +7,7 @@ if __name__ == "__main__":
             if(userCity):
                 data = get_weather(userCity)
                 print(f"\nWeather in {data['city']}, {data['country']}:")
+                print(f"🍀 Day of the week: {data['weekday']}")
                 print(f"🌡️ Temperature: {data['temperature']['temp_f']}°F / {data['temperature']['temp_c']}°C")
                 print(f"💧 Humidity: {data['humidity']}%")
                 print(f"🌤️ Condition: {data['condition']['text']}")
