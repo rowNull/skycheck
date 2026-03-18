@@ -1,5 +1,5 @@
 import requests
-from config import API_KEY, API_URL
+from skycheck.config import API_KEY, API_URL
 
 def get_weather(city):
     params = {

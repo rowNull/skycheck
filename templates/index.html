@@ -1,0 +1,27 @@
+<!-- @format -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SkyCheck - Weather App</title>
+  </head>
+  <body>
+    <style>
+      body {
+        height: 100vh;
+        text-align: center;
+        vertical-align: center;
+      }
+    </style>
+    {% if error%}
+    <p>{{error}}</p>
+    {%endif%}
+    <form action="/weather" method="POST">
+      <label for="city">City:</label>
+      <input type="text" id="city" name="city" />
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

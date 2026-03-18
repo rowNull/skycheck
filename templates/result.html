@@ -1,0 +1,20 @@
+<!-- @format -->
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SkyCheck - Weather Result</title>
+  </head>
+  <body>
+    <h3>{{data['city']}}, {{data['country']}}</h3>
+    <p>
+      🌡️ Temperature: {{data['temperature']['temp_f']}}°F /
+      {{data['temperature']['temp_c']}}°C
+    </p>
+    <p>💧 Humidity: {{data['humidity']}}%</p>
+    <p>🌤️ Condition: {{data['condition']['text']}}</p>
+    <p>💨 Wind: {{data['wind']}} mph</p>
+  </body>
+</html>
