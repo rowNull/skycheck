@@ -8,16 +8,49 @@
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='style.css') }}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <title>SkyCheck - Weather Result</title>
   </head>
   <body>
-    <h3>{{data['city']}}, {{data['country']}}</h3>
-    <p>
-      🌡️ Temperature: {{data['temperature']['temp_f']}}°F /
-      {{data['temperature']['temp_c']}}°C
-    </p>
-    <p>💧 Humidity: {{data['humidity']}}%</p>
-    <p>🌤️ Condition: {{data['condition']['text']}}</p>
-    <p>💨 Wind: {{data['wind']}} mph</p>
+    <div class="card {{ data['condition_class'] }}">
+      <div class="card-top">
+        <div class="card-left">
+          <!-- city, day, humidity, wind -->
+          <h3 class="cityName country">
+            {{data['city']}}, {{data['country']}}
+          </h3>
+          <p class="weekday">{{data['weekday']}}</p>
+          <p class="weekday">{{ data['condition']['text']}}</p>
+          <div class="secondary-info">
+            <p><i class="fa-solid fa-droplet"></i> {{data['humidity']}}%</p>
+            <p><i class="fa-solid fa-wind"></i> {{data['wind']}} mph</p>
+          </div>
+        </div>
+        <div class="card-right">
+          <img
+            src="https:{{ data['condition']['icon'] }}"
+            alt="weather icon"
+            class="weather-icon" />
+          <p class="temp temp-f">{{data['temperature']['temp_f']}}°F</p>
+          <p class="temp temp-c hidden">{{data['temperature']['temp_c']}}°C</p>
+        </div>
+      </div>
+      <div class="card-bottom">
+        <!-- empty for now -->
+      </div>
+    </div>
+    <script>
+      const celcius = document.querySelector(".temp-c");
+      const fahrenheit = document.querySelector(".temp-f");
+      const temps = document.querySelectorAll(".temp");
+      temps.forEach((temp) => {
+        temp.addEventListener("click", () => {
+          celcius.classList.toggle("hidden");
+          fahrenheit.classList.toggle("hidden");
+        });
+      });
+    </script>
   </body>
 </html>

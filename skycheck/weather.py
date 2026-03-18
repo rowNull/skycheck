@@ -19,6 +19,7 @@ def get_weather(city):
         date_string = location['localtime'].split(" ", 1)[0]
         date_obj = datetime.strptime(date_string, "%Y-%m-%d")
         weekday_name = date_obj.strftime("%A")
+        
 
 
 
@@ -34,8 +35,25 @@ def get_weather(city):
                 },
             'humidity': current['humidity'],
             'condition':current['condition'],
+            'condition_class': get_condition_class(current['condition']['code']),
             'wind': current['wind_mph'],
             }
 
     else:
         raise ValueError(data['error']['message'])
+
+def get_condition_class(code):
+    if code == 1000:
+        return "sunny"
+    elif 1003 <= code <= 1030:
+        return "cloudy"
+    elif 1135 <= code <= 1147:
+        return "foggy"
+    elif  1150 <= code <= 1201 or 1240 <= code <= 1264:
+        return "rainy"
+    elif 1066 <= code <= 1117 or 1204 <= code <= 1237:
+        return "snowy"
+    elif 1273 <= code <= 1282:
+        return "stormy"
+    else:
+        return "cloudy"
