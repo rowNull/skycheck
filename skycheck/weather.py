@@ -11,17 +11,22 @@ def get_weather(city):
     response = requests.get(API_URL, params=params)
     data = response.json()
 
-    location = data["location"]
-    current = data["current"]
+    if "location" in data:
 
-    return {
-        'city': location['name'],
-        'country': location['country'],
-        'temperature' : {
-            'temp_f': current['temp_f'],
-            'temp_c': current['temp_c'],
-            },
-        'humidity': current['humidity'],
-        'condition':current['condition'],
-        'wind': current['wind_mph'],
-        }
+        location = data["location"]
+        current = data["current"]
+
+        return {
+            'city': location['name'],
+            'country': location['country'],
+            'temperature' : {
+                'temp_f': current['temp_f'],
+                'temp_c': current['temp_c'],
+                },
+            'humidity': current['humidity'],
+            'condition':current['condition'],
+            'wind': current['wind_mph'],
+            }
+
+    else:
+        raise ValueError(data['error']['message'])
